@@ -1,7 +1,9 @@
 import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { items, total } = useCart();
+  const navigate = useNavigate();
 
   if (items.length === 0) return (
     <div className="cart-empty">
@@ -22,6 +24,9 @@ const Cart = () => {
       <div className="cart-total">
         <strong>Total : {total.toFixed(2)} €</strong>
       </div>
+      <button className="btn-checkout" onClick={() => navigate('/checkout')}>
+        Payer
+      </button>
     </div>
   );
 };

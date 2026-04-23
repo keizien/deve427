@@ -1,0 +1,52 @@
+.navbar {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.btn-nav {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.btn-nav:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.btn-login {
+  background: white;
+  color: #7c3aed;
+}
+
+.btn-login:hover {
+  background: #f3e8ff;
+}
+
+.btn-logout {
+  background: rgba(239, 68, 68, 0.7);
+}
+
+.btn-logout:hover {
+  background: rgba(239, 68, 68, 0.9);
+}
