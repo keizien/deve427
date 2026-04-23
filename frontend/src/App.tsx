@@ -1,9 +1,12 @@
 import ProductList from './ProductList';
+import { CartProvider } from './CartContext';
 
 const App = () => (
-  <div>
-    <ProductList />
-  </div>
+  <CartProvider>
+    <div>
+      <ProductList />
+    </div>
+  </CartProvider>
 );
 
 export default App;

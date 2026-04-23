@@ -1,5 +1,6 @@
 // frontend/src/ProductList.tsx
 import { useEffect, useState } from 'react';
+import { useCart } from './CartContext';
 
 type Product = {
   id: number;
@@ -12,7 +13,7 @@ const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null); // ✅ déplacé ici
-
+  const { addItem } = useCart();
   useEffect(() => {
     fetch('http://localhost:3001/api/products')
       .then(res => res.json())
@@ -40,7 +41,7 @@ const ProductList = () => {
             <p className="product-stock">
               En stock : <span>{product.stock} unités</span>
             </p>
-            <button className="btn-add-cart">
+            <button className="btn-add-cart" onClick={() => addItem(product)}>
               Ajouter au panier
             </button>
           </div>

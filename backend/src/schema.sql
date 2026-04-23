@@ -1,0 +1,3 @@
+-- Ce fichier sert de référence pour la structure de la BDD
+-- Il ne contient pas l'URL de connexion
+-- Pour créer les tables, exécute ce fichier dans Neon SQL Editor
