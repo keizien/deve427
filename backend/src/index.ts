@@ -5,7 +5,7 @@ import productsRouter from './products';
 import ordersRouter from './orders'; 
 import authRouter from './auth';   
 import cartRouter from './cart';
-
+import checkoutRouter from './checkout';
 const app = express();
 const PORT = 3001;
 
@@ -15,5 +15,6 @@ app.use('/api', productsRouter);
 app.use('/api', ordersRouter);
 app.use('/api', authRouter);
 app.use('/api', cartRouter);
+app.use('/api', checkoutRouter);
 
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
