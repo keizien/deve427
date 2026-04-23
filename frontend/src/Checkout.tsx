@@ -27,7 +27,6 @@ const Checkout = () => {
         })),
       }),
     });
-
     if (response.ok) setSuccess(true);
   };
 
