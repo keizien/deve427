@@ -11,7 +11,7 @@ type Product = {
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); // ✅ déplacé ici
+  const [error, setError] = useState<string | null>(null); 
 
   useEffect(() => {
     fetch('http://localhost:3001/api/products')
