@@ -1,6 +1,7 @@
 // frontend/src/ProductList.tsx
 import { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
+import './ProductList.css';
 
 type Product = {
   id: number;

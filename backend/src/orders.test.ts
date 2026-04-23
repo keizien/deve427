@@ -5,6 +5,11 @@ jest.mock('./ordersRepository', () => ({
   getRecentOrders: jest.fn(),
 }));
 
+jest.mock('./authMiddleware', () => ({
+  authMiddleware: (req: any, res: any, next: any) => next(),
+  adminMiddleware: (req: any, res: any, next: any) => next(),
+}));
+
 import { getRecentOrders } from './ordersRepository';
 import ordersRouter from './orders';
 
