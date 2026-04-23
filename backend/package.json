@@ -2,8 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "cors": "^2.8.6",
@@ -26,6 +28,8 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/src"],
+    "testPathIgnorePatterns": ["<rootDir>/dist/"]
   }
 }
