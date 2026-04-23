@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { getAllProducts } from './productsRepository';
 
-
 const router = Router();
 
 router.get('/products', async (req, res) => {
@@ -12,4 +11,5 @@ router.get('/products', async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 });
+
 export default router;

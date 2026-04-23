@@ -7,6 +7,7 @@ jest.mock('./productsRepository', () => ({
 
 import { getAllProducts } from './productsRepository';
 import productsRouter from './products';
+import { describe } from 'node:test';
 
 const mockedGetAllProducts = getAllProducts as jest.MockedFunction<typeof getAllProducts>;
 
