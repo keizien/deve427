@@ -1,9 +1,18 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the products heading after loading', async () => {
+  global.fetch = jest.fn().mockResolvedValue({
+    json: async () => [],
+  } as Response);
+
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByText(/chargement des produits/i)).toBeInTheDocument();
+
+  await waitFor(() => {
+    expect(screen.getByRole('heading', { name: /nos produits/i })).toBeInTheDocument();
+  });
+
+  (global.fetch as jest.Mock).mockRestore();
 });
