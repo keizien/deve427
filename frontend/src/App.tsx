@@ -81,22 +81,10 @@ const App = () => (
           } />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={
-          <div className="home-container">
-            <ProductList />
-            <Cart />
-          </div>
-        } />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
     </CartProvider>
   </BrowserRouter>
 );
