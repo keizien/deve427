@@ -24,7 +24,13 @@ const LoginPage = () => {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
-      navigate('/admin');
+
+      const payload = JSON.parse(atob(data.token.split('.')[1]));
+      if (payload.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch {
       setError('Erreur de connexion au serveur');
     }
