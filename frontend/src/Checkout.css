@@ -3,28 +3,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 48px 20px;
 }
 
 .checkout-card {
-  background: white;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 28px;
   padding: 48px 40px;
   width: 100%;
   max-width: 480px;
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(18px);
+  animation: rise-in 0.7s ease both;
 }
 
 .checkout-title {
   font-size: 28px;
-  font-weight: 800;
-  color: #7c3aed;
+  font-weight: 900;
+  color: #0f172a;
   margin-bottom: 8px;
 }
 
 .checkout-subtitle {
   font-size: 14px;
-  color: #888;
+  color: #64748b;
   margin-bottom: 32px;
 }
 
@@ -38,39 +41,40 @@
 .checkout-field label {
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a2e;
+  color: #0f172a;
 }
 
 .checkout-total {
-  background: #f0edf6;
-  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 16px;
   padding: 14px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 24px 0;
   font-size: 16px;
-  color: #1a1a2e;
+  color: #0f172a;
 }
 
 .checkout-total span {
   font-size: 20px;
-  font-weight: 800;
-  color: #7c3aed;
+  font-weight: 900;
+  color: #0f766e;
 }
 
 .btn-pay {
   width: 100%;
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: #0f766e;
   color: white;
   padding: 14px;
   font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 16px 28px rgba(15, 118, 110, 0.14);
 }
 
 .btn-pay:hover {
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+  box-shadow: 0 22px 34px rgba(15, 118, 110, 0.16);
   opacity: 1;
 }
 
@@ -85,11 +89,22 @@
 
 .checkout-success h2 {
   font-size: 28px;
-  font-weight: 800;
-  color: #059669;
+  font-weight: 900;
+  color: #0f766e;
 }
 
 .checkout-success p {
   font-size: 16px;
-  color: #888;
+  color: #64748b;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
