@@ -4,38 +4,97 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-1: #eef2f6;
+  --bg-2: #f8fafc;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #0f766e;
+  --accent-2: #1d4ed8;
+  --accent-3: #334155;
+  --border: rgba(148, 163, 184, 0.18);
+  --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  --pointer-x: 50px;
+  --pointer-y: 50px;
+  --scroll-progress: 0;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0edf6;
-  color: #1a1a2e;
+  background: var(--bg-2);
+  color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: -20vh -20vw;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background: rgba(15, 23, 42, 0.02);
+  filter: blur(24px);
+  opacity: 0.6;
+}
+
+body::after {
+  background: rgba(15, 23, 42, 0.015);
+  opacity: 0.25;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
 }
 
 button {
+  appearance: none;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
+  border-radius: 999px;
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, opacity 0.25s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+  transform: translateY(-2px) scale(1.01);
+  opacity: 0.96;
 }
 
 input {
-  border: 2px solid #d1c4e9;
-  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text);
+  border-radius: 14px;
   padding: 10px 15px;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   width: 100%;
 }
 
 input:focus {
-  border-color: #7c3aed;
+  border-color: rgba(37, 99, 235, 0.7);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  transform: translateY(-1px);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(251, 113, 133, 0.35);
+  color: white;
 }

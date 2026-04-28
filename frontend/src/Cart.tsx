@@ -2,7 +2,7 @@ import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { items, total } = useCart();
+  const { items, total, removeOneItem, clearCart } = useCart();
   const navigate = useNavigate();
 
   if (items.length === 0) return (
@@ -13,11 +13,26 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <h2>Mon panier</h2>
+      <div className="cart-header">
+        <h2>Mon panier</h2>
+        <button className="btn-clear-cart" onClick={clearCart}>
+          Vider le panier
+        </button>
+      </div>
+      <p className="cart-intro">Ajuste les quantités, supprime une unité ou passe au paiement en un clic.</p>
       {items.map(item => (
         <div key={item.productId} className="cart-item">
-          <span>{item.name}</span>
-          <span>x{item.quantity}</span>
+          <span className="cart-item-name">{item.name}</span>
+          <div className="cart-item-controls">
+            <button
+              className="btn-cart-quantity"
+              onClick={() => removeOneItem(item.productId)}
+              aria-label={`Retirer une unité de ${item.name}`}
+            >
+              -
+            </button>
+            <span className="cart-item-quantity">x{item.quantity}</span>
+          </div>
           <span>{(item.price * item.quantity).toFixed(2)} €</span>
         </div>
       ))}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -10,6 +11,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
       const response = await fetch('http://localhost:3001/api/register', {
         method: 'POST',
@@ -32,37 +34,45 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h1>Inscription</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nom</label>
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Mot de passe</label>
-          <input
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">S'inscrire</button>
-        <p>Déjà un compte ? <span onClick={() => navigate('/login')} style={{ color: '#7c3aed', cursor: 'pointer' }}>Se connecter</span></p>
-      </form>
+    <div className="register-container">
+      <div className="register-card">
+        <h1 className="register-title">Inscription</h1>
+        <p className="register-subtitle">Creez votre compte pour continuer vos achats</p>
+        {error && <p className="register-error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="register-field">
+            <label>Nom</label>
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </div>
+          <div className="register-field">
+            <label>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="register-field">
+            <label>Mot de passe</label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn-submit">S'inscrire</button>
+          <p className="register-footer">
+            Deja un compte ?{' '}
+            <span className="register-link" onClick={() => navigate('/login')}>
+              Se connecter
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
