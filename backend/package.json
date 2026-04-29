@@ -8,13 +8,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@polar-sh/express": "^0.6.5",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
-    "react-router-dom": "^7.14.2"
+    "react-router-dom": "^7.14.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
