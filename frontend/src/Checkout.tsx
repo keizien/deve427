@@ -33,6 +33,17 @@ const Checkout = () => {
     }
   };
 
+  const getUserId = () => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.id || null;
+    } catch {
+      return null;
+    }
+  };
+
   const handleSubmit = () => {
     const polarProductIds = items
       .map(item => item.polarProductId)
@@ -41,9 +52,12 @@ const Checkout = () => {
 
     const email = getCustomerEmail();
     const emailParam = email ? `&customerEmail=${encodeURIComponent(email)}` : '';
+    
+    const userId = getUserId();
+    const userIdParam = userId ? `&customerExternalId=${userId}` : '';
 
     if (polarProductIds) {
-      window.location.href = `http://localhost:3001/api/checkout?products=${polarProductIds}${emailParam}`;
+      window.location.href = `http://localhost:3001/api/checkout?products=${polarProductIds}${emailParam}${userIdParam}`;
     } else {
       alert("Erreur: Aucun identifiant Polar trouvé pour ces produits.");
     }

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { createOrder } from './ordersRepository';
-import { Checkout } from "@polar-sh/express";
+import { Checkout, Webhooks } from "@polar-sh/express";
 
 const router = Router();
 
@@ -22,6 +22,27 @@ router.get(
     returnUrl: "http://localhost:3000/",
     server: "sandbox",
     theme: "dark",
+  })
+);
+
+router.post(
+  "/polar/webhooks",
+  Webhooks({
+    webhookSecret: process.env.POLAR_WEBHOOK_SECRET!,
+    onPayload: async (payload) => {
+      if (payload.type === "order.paid") {
+        const order = payload.data;
+        const userId = order.customer_external_id;
+        console.log(`💰 Order paid: ${order.id} for customer ${order.customer_id} (Local User ID: ${userId})`);
+        
+        if (userId) {
+          console.log(`📦 Delivering digital products to user ${userId}...`);
+          // On pourrait ici appeler une fonction de service pour débloquer l'accès
+        }
+        
+        console.log(`✅ Webhook processed for order ${order.id}`);
+      }
+    },
   })
 );
 
