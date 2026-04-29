@@ -18,8 +18,10 @@ app.use('/api', productsRouter);
 describe('GET /api/products', () => {
   it('doit retourner une liste de produits avec les bons champs', async () => {
     mockedGetAllProducts.mockResolvedValue([
-      { id: 1, name: 'Perceuse Bosch', price: 89.99, stock: 15 },
-      { id: 2, name: 'Scie circulaire', price: 149.99, stock: 8 },
+      {
+        id: 1, name: 'UwU Doudou Mignon', price: 100.000, stock: 15,
+        polarProductId: 'f0867242-1a72-42db-b222-a6fc271587ce'
+}
     ]);
 
     const response = await request(app).get('/api/products');
