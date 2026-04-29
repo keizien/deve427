@@ -7,6 +7,7 @@ import authRouter from './auth';
 import cartRouter from './cart';
 import checkoutRouter from './checkout';
 import registerRouter from './register';
+
 const app = express();
 const PORT = 3001;
 

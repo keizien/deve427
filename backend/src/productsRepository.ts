@@ -6,11 +6,12 @@ export type Product = {
   name: string;
   price: number;
   stock: number;
+  polarProductId: string;
 };
 
 export const getAllProducts = async (): Promise<Product[]> => {
   const result = await pool.query<Product>(
-    'SELECT id, name, price::float, stock FROM products'
+    'SELECT id, name, price::float, stock, polar_product_id as "polarProductId" FROM products'
   );
   return result.rows;
 };
