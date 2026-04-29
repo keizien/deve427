@@ -5,11 +5,12 @@ type CartItem = {
   name: string;
   price: number;
   quantity: number;
+  polarProductId: string;
 };
 
 type CartContextType = {
   items: CartItem[];
-  addItem: (product: { id: number; name: string; price: number }) => void;
+  addItem: (product: { id: number; name: string; price: number; polarProductId: string }) => void;
   removeOneItem: (productId: number) => void;
   clearCart: () => void;
   total: number;
@@ -20,7 +21,7 @@ const CartContext = createContext<CartContextType | null>(null);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addItem = (product: { id: number; name: string; price: number }) => {
+  const addItem = (product: { id: number; name: string; price: number; polarProductId: string }) => {
     setItems(prev => {
       const existing = prev.find(i => i.productId === product.id);
       if (existing) {
@@ -30,7 +31,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             : i
         );
       }
-      return [...prev, { productId: product.id, name: product.name, price: product.price, quantity: 1 }];
+      return [
+        ...prev,
+        {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+          polarProductId: product.polarProductId,
+        },
+      ];
     });
 
     fetch(`http://localhost:3001/api/cart/1`, {

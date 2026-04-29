@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS products (
   price NUMERIC NOT NULL,
   image_url VARCHAR(255),
   stock INTEGER NOT NULL DEFAULT 0,
+  polar_product_id VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -62,8 +63,5 @@ CREATE TABLE IF NOT EXISTS order_items (
 );
 
 -- Données de test
-INSERT INTO products (name, description, price, stock) VALUES
-  ('Perceuse Bosch', 'Perceuse sans fil 18V', 89.99, 15),
-  ('Scie circulaire', 'Scie 1200W lame 190mm', 149.99, 8),
-  ('Niveau laser', 'Portée 20m, précision 0.3mm', 59.99, 23),
-  ('Visseuse Makita', 'Visseuse à choc 18V', 119.99, 12);
+INSERT INTO products (name, description, price, stock, polar_product_id) VALUES
+  ('UwU Doudou Mignon', 'doudou très mignon', 100.000, 15, 'f0867242-1a72-42db-b222-a6fc271587ce')

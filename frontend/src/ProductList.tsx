@@ -8,6 +8,7 @@ type Product = {
   name: string;
   price: number;
   stock: number;
+  polarProductId: string;
 };
 
 const ProductList = () => {
@@ -72,6 +73,7 @@ const ProductList = () => {
                 <span className="rocket-trail" aria-hidden="true" />
                 <span className="product-badge">Pop</span>
                 <h2>{product.name}</h2>
+                <p className="product-id-tag">REF: {product.polarProductId}</p>
                 <p className="product-price">{product.price.toFixed(2)} €</p>
                 <p className="product-stock">
                   En stock : <span>{product.stock} unités</span>
