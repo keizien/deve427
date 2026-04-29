@@ -15,7 +15,9 @@ const VisualEffects = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : true; // assume reduced motion in test env
 
     const updatePointer = (x: number, y: number) => {
       root.style.setProperty('--pointer-x', `${x}px`);
