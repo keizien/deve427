@@ -1,33 +1,52 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useCart } from './CartContext';
 import './Checkout.css';
 
 const Checkout = () => {
-  const { items, total } = useCart();
+  const [searchParams] = useSearchParams();
+  const { items, total, clearCart } = useCart();
   const [address, setAddress] = useState({
     street: '', city: '', zipCode: '', country: ''
   });
   const [success, setSuccess] = useState(false);
 
+  useEffect(() => {
+    if (searchParams.get('checkoutId')) {
+      setSuccess(true);
+      clearCart();
+    }
+  }, [searchParams, clearCart]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async () => {
-    const response = await fetch('http://localhost:3001/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: 1,
-        address,
-        items: items.map(i => ({
-          productId: i.productId,
-          quantity: i.quantity,
-          unitPrice: i.price,
-        })),
-      }),
-    });
-    if (response.ok) setSuccess(true);
+  const getCustomerEmail = () => {
+    const token = localStorage.getItem('token');
+    if (!token) return '';
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.email || '';
+    } catch {
+      return '';
+    }
+  };
+
+  const handleSubmit = () => {
+    const polarProductIds = items
+      .map(item => item.polarProductId)
+      .filter(id => !!id)
+      .join(',');
+
+    const email = getCustomerEmail();
+    const emailParam = email ? `&customerEmail=${encodeURIComponent(email)}` : '';
+
+    if (polarProductIds) {
+      window.location.href = `http://localhost:3001/api/checkout?products=${polarProductIds}${emailParam}`;
+    } else {
+      alert("Erreur: Aucun identifiant Polar trouvé pour ces produits.");
+    }
   };
 
   if (success) return (
