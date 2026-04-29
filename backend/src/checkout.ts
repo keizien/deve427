@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createOrder } from './ordersRepository';
+import { Checkout } from "@polar-sh/express";
 
 const router = Router();
 
@@ -12,5 +13,16 @@ router.post('/orders', async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
+
+router.get(
+  "/checkout",
+  Checkout({
+    accessToken: process.env.POLAR_ACCESS_TOKEN,
+    successUrl: process.env.SUCCESS_URL,
+    returnUrl: "http://localhost:3000/",
+    server: "sandbox",
+    theme: "dark",
+  })
+);
 
 export default router;
